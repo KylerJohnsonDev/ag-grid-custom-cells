@@ -2,6 +2,7 @@ import { Component, Input, NgModule, OnInit } from '@angular/core';
 import { AgGridModule } from 'ag-grid-angular';
 import { ColDef, GridApi, GridOptions, GridReadyEvent } from 'ag-grid-community';
 import { User } from '../../global/models/user';
+import { UsersTableActionColumnComponent, UsersTableActionColumnModule } from '../users-table-action-column/users-table-action-column.component';
 @Component({
   selector: 'app-users-table',
   templateUrl: './users-table.component.html',
@@ -43,6 +44,10 @@ export class UsersTableComponent implements OnInit {
     {
       headerName: 'Country',
       valueFormatter: ({ data }) => data.location.country
+    },
+    {
+      headerName: 'Actions',
+      cellRendererFramework: UsersTableActionColumnComponent
     }
   ]
 
@@ -59,7 +64,10 @@ export class UsersTableComponent implements OnInit {
 }
 
 @NgModule({
-  imports: [AgGridModule.withComponents([])],
+  imports: [
+    AgGridModule.withComponents([]),
+    UsersTableActionColumnModule
+  ],
   declarations: [UsersTableComponent],
   exports: [UsersTableComponent]
 })
