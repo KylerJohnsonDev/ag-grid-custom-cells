@@ -2,8 +2,10 @@ import { Component, NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { UsersService } from './users.service';
 import { Observable } from 'rxjs';
-import { User } from './user';
+import { User } from '../../global/models/user';
 import { CommonModule } from '@angular/common';
+import { BrowserModule } from '@angular/platform-browser';
+import { UsersTableModule } from '../users-table/users-table.component';
 
 @Component({
   selector: 'app-users-page',
@@ -21,7 +23,12 @@ export class UsersPageComponent {
 
 @NgModule({
   declarations: [UsersPageComponent],
-  imports: [CommonModule, HttpClientModule],
+  imports: [
+    CommonModule,
+    BrowserModule,
+    HttpClientModule,
+    UsersTableModule
+  ],
   exports: [UsersPageComponent]
 })
 export class UsersPageModule {}

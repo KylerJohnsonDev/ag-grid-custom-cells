@@ -14,7 +14,7 @@ import { UsersPageModule } from './users/users-page/users-page.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    UsersPageModule
+    UsersPageModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

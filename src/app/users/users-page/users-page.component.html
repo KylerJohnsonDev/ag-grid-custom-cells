@@ -1,1 +1,6 @@
-<p *ngIf="users$ | async as users">{{ users | json }}</p>
+<ng-container *ngIf="users$ | async as users">
+  <app-users-table
+  [users]="users"
+  ></app-users-table>
+</ng-container>
+

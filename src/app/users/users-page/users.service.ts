@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { User, UsersResponse } from './user';
-import { map } from 'rxjs/operators';
+import { EMPTY, Observable } from 'rxjs';
+import { User, UsersResponse } from '../../global/models/user';
+import { catchError, map } from 'rxjs/operators';
 
 @Injectable()
 export class UsersService {
@@ -14,6 +14,12 @@ export class UsersService {
   fetchUsers(): Observable<User[]> {
     return this.http
       .get<UsersResponse>(this.url)
-      .pipe(map(response => response.results))
+      .pipe(
+        map(response => response.results),
+        catchError(error => {
+          console.log(error);
+          return EMPTY
+        })
+      )
   }
 }
