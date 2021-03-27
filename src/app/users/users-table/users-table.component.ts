@@ -58,7 +58,8 @@ export class UsersTableComponent {
   }
 
   onRowSelected(selectedNode: RowNode) {
-    const userEmail = selectedNode.data?.email;
+    const selectedRow = this.gridApi.getSelectedRows()[0];
+    const userEmail = selectedRow?.email;
     this.selectUser.emit(userEmail);
   }
 

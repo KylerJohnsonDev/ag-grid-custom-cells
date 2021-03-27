@@ -7,6 +7,6 @@
   [suppressCellSelection]="true"
   [columnDefs]="columnDefs"
   [context]="gridContext"
-  (rowSelected)="onRowSelected($event)"
+  (selectionChanged)="onRowSelected($event)"
   (gridReady)="onGridReady($event)">
 </ag-grid-angular>

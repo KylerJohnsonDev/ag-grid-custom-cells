@@ -1,12 +1,15 @@
-<app-selected-user
-  [user]="selectedUser$ | async"
-></app-selected-user>
+<mat-toolbar [color]="'primary'">
+  <span>User Manager</span>
+</mat-toolbar>
+
+<main>
+  <app-selected-user
+    [user]="selectedUser$ | async"
+  ></app-selected-user>
 
   <app-users-table
     [users]="users$ | async"
     (deleteUser)="onDeleteUser($event)"
     (selectUser)="onSelectUser($event)"
   ></app-users-table>
-
-
-
+</main>

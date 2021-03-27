@@ -7,6 +7,7 @@ import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { UsersTableModule } from '../users-table/users-table.component';
 import { SelectedUserModule } from '../selected-user/selected-user.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 @Component({
   selector: 'app-users-page',
@@ -41,7 +42,8 @@ export class UsersPageComponent {
     BrowserModule,
     HttpClientModule,
     UsersTableModule,
-    SelectedUserModule
+    SelectedUserModule,
+    MatToolbarModule
   ],
   exports: [UsersPageComponent]
 })
