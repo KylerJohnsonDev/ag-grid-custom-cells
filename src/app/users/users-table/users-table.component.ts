@@ -1,4 +1,4 @@
-import { Component, Input, NgModule, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, NgModule, OnInit, Output } from '@angular/core';
 import { AgGridModule } from 'ag-grid-angular';
 import { ColDef, GridApi, GridOptions, GridReadyEvent } from 'ag-grid-community';
 import { User } from '../../global/models/user';
@@ -8,11 +8,16 @@ import { UsersTableActionColumnComponent, UsersTableActionColumnModule } from '.
   templateUrl: './users-table.component.html',
   styleUrls: ['./users-table.component.scss']
 })
-export class UsersTableComponent implements OnInit {
+export class UsersTableComponent {
 
   @Input() users!: User[];
   gridApi!: GridApi;
   gridOptions!: GridOptions;
+  gridContext: any;
+  // expects user's email to be emitted
+  @Output() deleteUser = new EventEmitter<string>();
+  // expects user's email to be emitted
+  @Output() selectUser = new EventEmitter<string>();
 
   columnDefs: ColDef[] = [
     {
@@ -23,23 +28,12 @@ export class UsersTableComponent implements OnInit {
       field: 'email'
     },
     {
-      field: 'phone'
-    },
-    {
       headerName: 'Street',
       valueFormatter: ({ data }) => `${data.location.street.number} ${data.location.street.name}`
     },
     {
       headerName: 'City',
       valueFormatter: ({ data }) => data.location.city
-    },
-    {
-      headerName: 'State',
-      valueFormatter: ({ data }) => data.location.state
-    },
-    {
-      headerName: 'Postal Code',
-      valueFormatter: ({ data }) => data.location.postcode
     },
     {
       headerName: 'Country',
@@ -51,14 +45,21 @@ export class UsersTableComponent implements OnInit {
     }
   ]
 
-
-  ngOnInit(): void {
-
+  ngOnInit() {
+    this.gridContext = { componentParent: this };
   }
 
   onGridReady(params: GridReadyEvent) {
     this.gridApi = params.api;
     this.gridApi.sizeColumnsToFit();
+  }
+
+  onDeleteUser(email: string) {
+    this.deleteUser.emit(email);
+  }
+
+  onSelectUser(email: string) {
+    this.selectUser.emit(email);
   }
 
 }

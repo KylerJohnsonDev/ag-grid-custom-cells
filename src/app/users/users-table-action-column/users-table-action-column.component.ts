@@ -1,27 +1,43 @@
 import { Component, NgModule, OnInit } from '@angular/core';
 import { AgGridModule } from 'ag-grid-angular';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { UsersService } from '../users-page/users.service';
 
 @Component({
   selector: 'app-users-table-action-column',
   templateUrl: './users-table-action-column.component.html',
   styleUrls: ['./users-table-action-column.component.scss']
 })
-export class UsersTableActionColumnComponent implements OnInit {
+export class UsersTableActionColumnComponent {
 
   params!: any;
 
+  constructor(private usersService: UsersService) {}
+
   agInit(params: any) {
-    console.log({params});
     this.params = params;
   }
 
-  ngOnInit(): void {
+  deleteUser(email: string) {
+    const componentParent = this.params.context.componentParent;
+    componentParent.onDeleteUser(email);
   }
 
+  selectUser(email: string) {
+    const componentParent = this.params.context.componentParent;
+    componentParent.onSelectUser(email);
+  }
 }
 
 @NgModule({
-  imports: [AgGridModule],
+  imports: [
+    AgGridModule,
+    MatMenuModule,
+    MatButtonModule,
+    MatIconModule
+  ],
   declarations: [UsersTableActionColumnComponent],
   exports: [UsersTableActionColumnComponent]
 })

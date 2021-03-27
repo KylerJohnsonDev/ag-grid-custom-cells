@@ -15,10 +15,22 @@ import { UsersTableModule } from '../users-table/users-table.component';
 })
 export class UsersPageComponent {
 
-  users$: Observable<User[]> = this.usersService.fetchUsers();
+  users$: Observable<User[]|null> = this.usersService.users$;
+  selectedUser$: Observable<User|null> = this.usersService.selectedUser$;
 
   constructor(private usersService: UsersService) { }
 
+  onDeleteUser(email: string) {
+    this.usersService.deleteUser(email);
+  }
+
+  onSelectUser(email: string) {
+    this.usersService.selectUser(email);
+  }
+
+  onClearSelectedUser() {
+    this.usersService.clearSelectedUser();
+  }
 }
 
 @NgModule({
