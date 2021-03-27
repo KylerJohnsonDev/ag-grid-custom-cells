@@ -3,7 +3,10 @@
   class="ag-theme-alpine"
   style="width: 100%; height: 500px"
   [rowData]="users"
+  [rowSelection]="'single'"
+  [suppressCellSelection]="true"
   [columnDefs]="columnDefs"
   [context]="gridContext"
+  (rowSelected)="onRowSelected($event)"
   (gridReady)="onGridReady($event)">
 </ag-grid-angular>

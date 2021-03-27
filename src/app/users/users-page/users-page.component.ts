@@ -6,6 +6,7 @@ import { User } from '../../global/models/user';
 import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { UsersTableModule } from '../users-table/users-table.component';
+import { SelectedUserModule } from '../selected-user/selected-user.component';
 
 @Component({
   selector: 'app-users-page',
@@ -39,7 +40,8 @@ export class UsersPageComponent {
     CommonModule,
     BrowserModule,
     HttpClientModule,
-    UsersTableModule
+    UsersTableModule,
+    SelectedUserModule
   ],
   exports: [UsersPageComponent]
 })

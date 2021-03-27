@@ -1,8 +1,12 @@
-<ng-container *ngIf="users$ | async as users">
+<app-selected-user
+  [user]="selectedUser$ | async"
+></app-selected-user>
+
   <app-users-table
-    [users]="users"
+    [users]="users$ | async"
     (deleteUser)="onDeleteUser($event)"
     (selectUser)="onSelectUser($event)"
   ></app-users-table>
-</ng-container>
+
+
 

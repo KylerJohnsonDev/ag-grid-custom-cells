@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, NgModule, OnInit, Output } from '@angular/core';
 import { AgGridModule } from 'ag-grid-angular';
-import { ColDef, GridApi, GridOptions, GridReadyEvent } from 'ag-grid-community';
+import { ColDef, GridApi, GridOptions, GridReadyEvent, RowNode } from 'ag-grid-community';
 import { User } from '../../global/models/user';
 import { UsersTableActionColumnComponent, UsersTableActionColumnModule } from '../users-table-action-column/users-table-action-column.component';
 @Component({
@@ -10,9 +10,8 @@ import { UsersTableActionColumnComponent, UsersTableActionColumnModule } from '.
 })
 export class UsersTableComponent {
 
-  @Input() users!: User[];
+  @Input() users!: User[] | null;
   gridApi!: GridApi;
-  gridOptions!: GridOptions;
   gridContext: any;
   // expects user's email to be emitted
   @Output() deleteUser = new EventEmitter<string>();
@@ -58,8 +57,9 @@ export class UsersTableComponent {
     this.deleteUser.emit(email);
   }
 
-  onSelectUser(email: string) {
-    this.selectUser.emit(email);
+  onRowSelected(selectedNode: RowNode) {
+    const userEmail = selectedNode.data?.email;
+    this.selectUser.emit(userEmail);
   }
 
 }

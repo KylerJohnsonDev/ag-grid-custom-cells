@@ -3,10 +3,6 @@
   <mat-icon>more_horiz</mat-icon>
 </button>
 <mat-menu #menu="matMenu">
-  <button mat-menu-item (click)="selectUser(params.data.email)">
-    <mat-icon>visibility</mat-icon>
-    <span>View Detail</span>
-  </button>
   <button mat-menu-item (click)="deleteUser(params.data.email)">
     <mat-icon>delete</mat-icon>
     <span>Delete</span>

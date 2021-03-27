@@ -24,11 +24,6 @@ export class UsersTableActionColumnComponent {
     const componentParent = this.params.context.componentParent;
     componentParent.onDeleteUser(email);
   }
-
-  selectUser(email: string) {
-    const componentParent = this.params.context.componentParent;
-    componentParent.onSelectUser(email);
-  }
 }
 
 @NgModule({

@@ -1,0 +1,49 @@
+<mat-card>
+  <mat-card-title>User Details</mat-card-title>
+  <mat-card-content>
+    <div class="key-value-pair">
+      <span class="key">Name:</span>
+      <span class="value">{{ user?.name?.first}} {{ user?.name?.last }}</span>
+    </div>
+
+    <div class="key-value-pair">
+      <span class="key">Date of Birth:</span>
+      <span class="value">{{ user?.dob?.date | date: 'yyyy-MM-dd' }}</span>
+    </div>
+
+    <div class="key-value-pair">
+      <span class="key">Email: </span>
+      <span class="value">{{ user?.email }}</span>
+    </div>
+
+    <div class="key-value-pair">
+      <span class="key">Username: </span>
+      <span class="value">{{ user?.login?.username }}</span>
+    </div>
+
+    <div class="key-value-pair">
+      <span class="key">Street Address: </span>
+      <span class="value">{{ user?.location?.street?.number }} {{ user?.location?.street?.name }}</span>
+    </div>
+
+    <div class="key-value-pair">
+      <span class="key">City: </span>
+      <span class="value">{{ user?.location?.city }}</span>
+    </div>
+
+    <div class="key-value-pair">
+      <span class="key">State: </span>
+      <span class="value">{{ user?.location?.state }}</span>
+    </div>
+
+    <div class="key-value-pair">
+      <span class="key">Postal Code: </span>
+      <span class="value">{{ user?.location?.postcode }}</span>
+    </div>
+
+    <div class="key-value-pair">
+      <span class="key">Country: </span>
+      <span class="value">{{ user?.location?.country }}</span>
+    </div>
+  </mat-card-content>
+</mat-card>
