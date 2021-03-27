@@ -17,16 +17,6 @@ export class SelectedUserComponent {
   streetAddress!: string;
 
   @Input() user!: User | null;
-  // @Input('user')
-  // set user (value: User | null) {
-  //   this.userFullName = value?.name?.first && value?.name?.last
-  //     ? `${value?.name?.first} ${value?.name?.last}`
-  //     : 'N/A';
-
-  //   this.userFullName = value?.location?.street?.number && value?.location?.street?.name
-  //   ? `${value?.location?.street?.number} ${value?.location?.street?.name}`
-  //   : 'N/A'
-  // }
 
   @Output() clearSelectedUser = new EventEmitter<void>();
 
