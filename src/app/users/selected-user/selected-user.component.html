@@ -1,49 +1,49 @@
 <mat-card>
-  <mat-card-title>User Details</mat-card-title>
+  <mat-card-title>Personnel Details</mat-card-title>
   <mat-card-content>
-    <div class="key-value-pair">
-      <span class="key">Name:</span>
-      <span class="value">{{ user?.name?.first}} {{ user?.name?.last }}</span>
-    </div>
+    <app-key-value-pair
+      [key]="'Name:'"
+      [value]="(user?.name?.first | concat: user?.name?.last)"
+    ></app-key-value-pair>
 
-    <div class="key-value-pair">
-      <span class="key">Date of Birth:</span>
-      <span class="value">{{ user?.dob?.date | date: 'yyyy-MM-dd' }}</span>
-    </div>
+    <app-key-value-pair
+      [key]="'Date of Birth:'"
+      [value]="(user?.dob?.date | date: 'yyyy-MM-dd')"
+    ></app-key-value-pair>
 
-    <div class="key-value-pair">
-      <span class="key">Email: </span>
-      <span class="value">{{ user?.email }}</span>
-    </div>
+    <app-key-value-pair
+      [key]="'Email:'"
+      [value]="user?.email || null"
+    ></app-key-value-pair>
 
-    <div class="key-value-pair">
-      <span class="key">Username: </span>
-      <span class="value">{{ user?.login?.username }}</span>
-    </div>
+    <app-key-value-pair
+      [key]="'Username:'"
+      [value]="user?.login?.username || null"
+    ></app-key-value-pair>
 
-    <div class="key-value-pair">
-      <span class="key">Street Address: </span>
-      <span class="value">{{ user?.location?.street?.number }} {{ user?.location?.street?.name }}</span>
-    </div>
+    <app-key-value-pair
+      [key]="'Street Address:'"
+      [value]="(user?.location?.street?.number?.toString() | concat: user?.location?.street?.name)"
+    ></app-key-value-pair>
 
-    <div class="key-value-pair">
-      <span class="key">City: </span>
-      <span class="value">{{ user?.location?.city }}</span>
-    </div>
+    <app-key-value-pair
+      [key]="'City:'"
+      [value]="user?.location?.city || null"
+    ></app-key-value-pair>
 
-    <div class="key-value-pair">
-      <span class="key">State: </span>
-      <span class="value">{{ user?.location?.state }}</span>
-    </div>
+    <app-key-value-pair
+      [key]="'State:'"
+      [value]="user?.location?.state || null"
+    ></app-key-value-pair>
 
-    <div class="key-value-pair">
-      <span class="key">Postal Code: </span>
-      <span class="value">{{ user?.location?.postcode }}</span>
-    </div>
+    <app-key-value-pair
+      [key]="'Postal Code:'"
+      [value]="user?.location?.postcode || null"
+    ></app-key-value-pair>
 
-    <div class="key-value-pair">
-      <span class="key">Country: </span>
-      <span class="value">{{ user?.location?.country }}</span>
-    </div>
+    <app-key-value-pair
+      [key]="'Country:'"
+      [value]="user?.location?.country || null"
+    ></app-key-value-pair>
   </mat-card-content>
 </mat-card>

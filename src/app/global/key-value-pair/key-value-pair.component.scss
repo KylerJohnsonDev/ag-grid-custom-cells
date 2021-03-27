@@ -1,0 +1,31 @@
+:host {
+  display: flex;
+
+  .key {
+    font-weight: bold;
+    flex: 0 40%;
+  }
+
+  .value {
+    flex: 1;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  :host {
+    .key {
+      font-weight: bold;
+      flex: 0 40%;
+    }
+  }
+}
+
+@media only screen and (min-width: 1000px) {
+  :host {
+    .key {
+      font-weight: bold;
+      flex: 0 20%;
+    }
+  }
+}
+
