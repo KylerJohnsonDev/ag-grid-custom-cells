@@ -9,6 +9,7 @@ import { UsersTableModule } from '../users-table/users-table.component';
 import { SelectedUserModule } from '../selected-user/selected-user.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatCardModule } from '@angular/material/card';
 
 @Component({
   selector: 'app-users-page',
@@ -45,7 +46,8 @@ export class UsersPageComponent {
     UsersTableModule,
     SelectedUserModule,
     MatToolbarModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatCardModule
   ],
   exports: [UsersPageComponent]
 })

@@ -1,9 +1,15 @@
 :host {
+  height: 100%;
 
   main {
     display: grid;
     grid-template-columns: 1fr;
     gap: 1rem;
     padding: 1rem;
+
+    mat-card {
+      padding: 0;
+      flex: 1;
+    }
   }
 }
