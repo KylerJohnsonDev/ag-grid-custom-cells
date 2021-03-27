@@ -8,6 +8,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { UsersTableModule } from '../users-table/users-table.component';
 import { SelectedUserModule } from '../selected-user/selected-user.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-users-page',
@@ -43,7 +44,8 @@ export class UsersPageComponent {
     HttpClientModule,
     UsersTableModule,
     SelectedUserModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatSnackBarModule
   ],
   exports: [UsersPageComponent]
 })
