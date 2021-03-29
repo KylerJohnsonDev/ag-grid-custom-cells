@@ -3,6 +3,7 @@ import { AgGridModule } from 'ag-grid-angular';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { UsersService } from '../users-page/users.service';
 
 @Component({
@@ -31,7 +32,8 @@ export class UsersTableActionColumnComponent {
     AgGridModule,
     MatMenuModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    MatTooltipModule
   ],
   declarations: [UsersTableActionColumnComponent],
   exports: [UsersTableActionColumnComponent]

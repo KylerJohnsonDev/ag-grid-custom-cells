@@ -6,6 +6,7 @@
   <mat-card class="mat-elevation-z4">
     <app-users-table
       [users]="users$ | async"
+      [permissions]="permissions$ | async"
       (deleteUser)="onDeleteUser($event)"
       (selectUser)="onSelectUser($event)"
     ></app-users-table>

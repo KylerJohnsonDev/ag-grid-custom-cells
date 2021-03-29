@@ -10,6 +10,8 @@ import { SelectedUserModule } from '../selected-user/selected-user.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatCardModule } from '@angular/material/card';
+import { PermissionsService } from 'src/app/global/services/permissions.service';
+import { Permissions } from '../../global/models/permissions';
 
 @Component({
   selector: 'app-users-page',
@@ -21,8 +23,14 @@ export class UsersPageComponent {
 
   users$: Observable<User[]|null> = this.usersService.users$;
   selectedUser$: Observable<User|null> = this.usersService.selectedUser$;
+  permissions$: Observable<Permissions> = this.permissionsService.fetchPermissions$;
 
-  constructor(private usersService: UsersService) { }
+  constructor(
+    private usersService: UsersService,
+    private permissionsService: PermissionsService
+  ) {
+    console.log(this.permissionsService)
+  }
 
   onDeleteUser(email: string) {
     this.usersService.deleteUser(email);
