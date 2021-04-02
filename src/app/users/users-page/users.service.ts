@@ -41,6 +41,16 @@ export class UsersService {
     })
   }
 
+  updateUserEmail(oldEmail: string, newEmail: string) {
+    const usersStateClone = [...this.usersSubject$.value];
+    const userToUpdate = usersStateClone.find(user => user.email === oldEmail);
+
+    if(!userToUpdate) { return; }
+
+    userToUpdate.email = newEmail;
+    this.usersSubject$.next(usersStateClone);
+  }
+
   selectUser(email: string) {
     const usersState = [...this.usersSubject$.value];
     const selectedUser = usersState.find(user => user.email === email) as User;

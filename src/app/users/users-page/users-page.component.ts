@@ -1,7 +1,7 @@
 import { Component, NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { UsersService } from './users.service';
-import { Observable } from 'rxjs';
+import { combineLatest, Observable } from 'rxjs';
 import { User } from '../../global/models/user';
 import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
@@ -10,8 +10,11 @@ import { SelectedUserModule } from '../selected-user/selected-user.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatCardModule } from '@angular/material/card';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { PermissionsService } from 'src/app/global/services/permissions.service';
 import { Permissions } from '../../global/models/permissions';
+import { map } from 'rxjs/operators';
+import { EditUserNameDialogComponent, EditUserNameDialogModule } from '../edit-user-name-dialog/edit-user-name-dialog.component';
 
 @Component({
   selector: 'app-users-page',
@@ -21,16 +24,25 @@ import { Permissions } from '../../global/models/permissions';
 })
 export class UsersPageComponent {
 
-  users$: Observable<User[]|null> = this.usersService.users$;
-  selectedUser$: Observable<User|null> = this.usersService.selectedUser$;
-  permissions$: Observable<Permissions> = this.permissionsService.fetchPermissions$;
+  private users$: Observable<User[]|null> = this.usersService.users$;
+  private selectedUser$: Observable<User|null> = this.usersService.selectedUser$;
+  private permissions$: Observable<Permissions> = this.permissionsService.fetchPermissions$;
+
+  usersPageViewModel$ = combineLatest([
+    this.users$,
+    this.selectedUser$,
+    this.permissions$
+  ]).pipe(
+    map(([users, selectedUser, permissions]) => (
+      { users, selectedUser, permissions }
+    ))
+  )
 
   constructor(
     private usersService: UsersService,
-    private permissionsService: PermissionsService
-  ) {
-    console.log(this.permissionsService)
-  }
+    private permissionsService: PermissionsService,
+    public dialog: MatDialog
+  ) { }
 
   onDeleteUser(email: string) {
     this.usersService.deleteUser(email);
@@ -38,6 +50,17 @@ export class UsersPageComponent {
 
   onSelectUser(email: string) {
     this.usersService.selectUser(email);
+  }
+
+  onUpdateEmail(email: string) {
+    const dialogRef = this.dialog.open(EditUserNameDialogComponent, {
+      width: '300px',
+      data: email
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.usersService.updateUserEmail(email, result);
+    });
   }
 
   onClearSelectedUser() {
@@ -55,7 +78,9 @@ export class UsersPageComponent {
     SelectedUserModule,
     MatToolbarModule,
     MatSnackBarModule,
-    MatCardModule
+    MatCardModule,
+    MatDialogModule,
+    EditUserNameDialogModule
   ],
   exports: [UsersPageComponent]
 })

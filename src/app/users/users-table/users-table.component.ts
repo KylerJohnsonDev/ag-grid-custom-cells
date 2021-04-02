@@ -20,6 +20,8 @@ export class UsersTableComponent {
   @Output() deleteUser = new EventEmitter<string>();
   // expects user's email to be emitted
   @Output() selectUser = new EventEmitter<string>();
+  // expects user's email to be emitted
+  @Output() updateEmail = new EventEmitter<string>();
 
 
 
@@ -77,7 +79,11 @@ export class UsersTableComponent {
     this.deleteUser.emit(email);
   }
 
-  onRowSelected() {
+  onUpdateEmail(email: string) {
+    this.updateEmail.emit(email);
+  }
+
+   onRowSelected() {
     const selectedRow = this.gridApi.getSelectedRows()[0];
     const userEmail = selectedRow?.email;
     this.selectUser.emit(userEmail);
