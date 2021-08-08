@@ -11,7 +11,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatCardModule } from '@angular/material/card';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
-import { EditUserNameDialogComponent, EditUserNameDialogModule } from '../edit-user-name-dialog/edit-user-name-dialog.component';
+import { EditUserEmailDialogComponent, EditUserEmailDialogModule } from '../edit-user-email-dialog/edit-user-email-dialog.component';
 
 @Component({
   selector: 'app-users-page',
@@ -38,7 +38,7 @@ export class UsersPageComponent {
   }
 
   onUpdateEmail(email: string) {
-    const dialogRef = this.dialog.open(EditUserNameDialogComponent, {
+    const dialogRef = this.dialog.open(EditUserEmailDialogComponent, {
       width: '300px',
       data: email
     });
@@ -67,7 +67,7 @@ export class UsersPageComponent {
     MatSnackBarModule,
     MatCardModule,
     MatDialogModule,
-    EditUserNameDialogModule
+    EditUserEmailDialogModule
   ],
   exports: [UsersPageComponent]
 })

@@ -7,14 +7,14 @@ import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/materia
 import { FormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'app-edit-user-name-dialog',
-  templateUrl: './edit-user-name-dialog.component.html',
-  styleUrls: ['./edit-user-name-dialog.component.scss']
+  selector: 'app-edit-user-email-dialog',
+  templateUrl: './edit-user-email-dialog.component.html',
+  styleUrls: ['./edit-user-email-dialog.component.scss']
 })
-export class EditUserNameDialogComponent {
+export class EditUserEmailDialogComponent {
 
   constructor(
-    public dialogRef: MatDialogRef<EditUserNameDialogComponent>,
+    public dialogRef: MatDialogRef<EditUserEmailDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: string
   ) { }
 
@@ -26,7 +26,7 @@ export class EditUserNameDialogComponent {
 
 @NgModule({
   imports: [CommonModule, MatDialogModule, MatButtonModule, MatFormFieldModule, MatInputModule, FormsModule],
-  declarations: [EditUserNameDialogComponent],
-  exports: [EditUserNameDialogComponent]
+  declarations: [EditUserEmailDialogComponent],
+  exports: [EditUserEmailDialogComponent]
 })
-export class EditUserNameDialogModule {}
+export class EditUserEmailDialogModule {}
