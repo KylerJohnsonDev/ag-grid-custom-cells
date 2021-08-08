@@ -44,7 +44,9 @@ export class UsersPageComponent {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      this.usersService.updateUserEmail(email, result);
+      if(result) { // do not update if no result
+        this.usersService.updateUserEmail(email, result);
+      }
     });
   }
 
