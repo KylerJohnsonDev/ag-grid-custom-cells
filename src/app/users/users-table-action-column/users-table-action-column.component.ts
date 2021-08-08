@@ -4,7 +4,6 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { UsersService } from '../users-page/users.service';
 
 @Component({
   selector: 'app-users-table-action-column',
@@ -14,8 +13,6 @@ import { UsersService } from '../users-page/users.service';
 export class UsersTableActionColumnComponent {
 
   params!: any;
-
-  constructor(private usersService: UsersService) {}
 
   agInit(params: any) {
     this.params = params;
