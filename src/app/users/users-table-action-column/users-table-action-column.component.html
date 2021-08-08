@@ -3,14 +3,14 @@
   <mat-icon>more_horiz</mat-icon>
 </button>
 <mat-menu #menu="matMenu">
-  <span matTooltip="Update action only available to admin and managers" [matTooltipDisabled]="params?.permissions?.canEditPersonnel">
-    <button mat-menu-item (click)="updateEmail(params.data.email)" [disabled]="!params?.permissions?.canEditPersonnel">
+  <span matTooltip="Update action only available to admin and managers">
+    <button mat-menu-item (click)="updateEmail(params.data.email)">
       <mat-icon>mode</mat-icon>
       <span>Update Email</span>
     </button>
   </span>
-  <span matTooltip="Delete action only available to admin" [matTooltipDisabled]="params?.permissions?.canDeletePersonnel">
-    <button mat-menu-item (click)="deleteUser(params.data.email)" [disabled]="!params?.permissions?.canDeletePersonnel">
+  <span matTooltip="Delete action only available to admin">
+    <button mat-menu-item (click)="deleteUser(params.data.email)">
       <mat-icon>delete</mat-icon>
       <span>Delete</span>
     </button>

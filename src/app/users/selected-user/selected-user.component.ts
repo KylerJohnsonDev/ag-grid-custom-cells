@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, NgModule, OnInit, Output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
-import { KeyValuePairModule } from 'src/app/global/key-value-pair/key-value-pair.component';
+import { KeyValuePairModule } from 'src/app/global/components/key-value-pair/key-value-pair.component';
 import { User } from 'src/app/global/models/user';
 import { ConcatPipeModule } from 'src/app/global/pipes/concat.pipe';
 

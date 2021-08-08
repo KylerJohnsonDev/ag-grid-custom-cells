@@ -6,7 +6,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { UsersPageModule } from './users/users-page/users-page.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { PermissionsService } from './global/services/permissions.service';
 
 @NgModule({
   declarations: [
@@ -18,9 +17,6 @@ import { PermissionsService } from './global/services/permissions.service';
     HttpClientModule,
     UsersPageModule,
     BrowserAnimationsModule,
-  ],
-  providers: [
-    PermissionsService
   ],
   bootstrap: [AppComponent]
 })

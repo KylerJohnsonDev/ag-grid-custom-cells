@@ -2,17 +2,21 @@
   <span>Personnel Manager</span>
 </mat-toolbar>
 
-<main *ngIf="usersPageViewModel$ | async as vm">
+<main>
   <mat-card class="mat-elevation-z4">
     <app-users-table
-      [users]="vm.users"
-      [permissions]="vm.permissions"
+      [users]="users$ | async"
       (deleteUser)="onDeleteUser($event)"
       (selectUser)="onSelectUser($event)"
       (updateEmail)="onUpdateEmail($event)"
     ></app-users-table>
   </mat-card>
   <app-selected-user
-    [user]="vm.selectedUser"
+    *ngIf="selectedUser$ | async as selectedUser; else selectUserMessage"
+    [user]="selectedUser"
   ></app-selected-user>
 </main>
+
+<ng-template #selectUserMessage>
+  <h3>To view user details, select user from table above by clicking on a row.</h3>
+</ng-template>

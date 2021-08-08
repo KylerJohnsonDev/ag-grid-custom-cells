@@ -1,7 +1,7 @@
 import { Component, NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { UsersService } from './users.service';
-import { combineLatest, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { User } from '../../global/models/user';
 import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
@@ -11,9 +11,6 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatCardModule } from '@angular/material/card';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
-import { PermissionsService } from 'src/app/global/services/permissions.service';
-import { Permissions } from '../../global/models/permissions';
-import { map } from 'rxjs/operators';
 import { EditUserNameDialogComponent, EditUserNameDialogModule } from '../edit-user-name-dialog/edit-user-name-dialog.component';
 
 @Component({
@@ -24,23 +21,11 @@ import { EditUserNameDialogComponent, EditUserNameDialogModule } from '../edit-u
 })
 export class UsersPageComponent {
 
-  private users$: Observable<User[]|null> = this.usersService.users$;
-  private selectedUser$: Observable<User|null> = this.usersService.selectedUser$;
-  private permissions$: Observable<Permissions> = this.permissionsService.fetchPermissions$;
-
-  usersPageViewModel$ = combineLatest([
-    this.users$,
-    this.selectedUser$,
-    this.permissions$
-  ]).pipe(
-    map(([users, selectedUser, permissions]) => (
-      { users, selectedUser, permissions }
-    ))
-  )
+  users$: Observable<User[]> = this.usersService.users$;
+  selectedUser$: Observable<User|null> = this.usersService.selectedUser$;
 
   constructor(
     private usersService: UsersService,
-    private permissionsService: PermissionsService,
     public dialog: MatDialog
   ) { }
 
