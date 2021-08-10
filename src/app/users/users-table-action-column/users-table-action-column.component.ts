@@ -35,7 +35,6 @@ export class UsersTableActionColumnComponent {
     MatMenuModule,
     MatButtonModule,
     MatIconModule,
-    MatTooltipModule
   ],
   declarations: [UsersTableActionColumnComponent],
   exports: [UsersTableActionColumnComponent]

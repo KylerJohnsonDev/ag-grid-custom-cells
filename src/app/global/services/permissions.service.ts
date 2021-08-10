@@ -3,7 +3,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { Permissions } from '../models/permissions';
 
 const initialPermissionsState: Permissions = {
-  canEditPersonnel: false,
+  canEditPersonnel: true,
   canDeletePersonnel: false
 }
 
