@@ -3,7 +3,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { UsersService } from './users.service';
 import { Observable } from 'rxjs';
 import { User } from '../../global/models/user';
-import { Permissions } from 'src/app/global/models/permissions';
+import { PermissionsMap, PermissionUpdateEvent } from 'src/app/global/models/permissions';
 import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { UsersTableModule } from '../users-table/users-table.component';
@@ -14,6 +14,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { EditUserEmailDialogComponent, EditUserEmailDialogModule } from '../edit-user-email-dialog/edit-user-email-dialog.component';
 import { PermissionsService } from 'src/app/global/services/permissions.service';
+import { tap } from 'rxjs/operators';
+import { PermissionsControlModule } from 'src/app/global/components/permission-controls/permission-controls.component';
 
 @Component({
   selector: 'app-users-page',
@@ -25,13 +27,17 @@ export class UsersPageComponent {
 
   users$: Observable<User[]> = this.usersService.users$;
   selectedUser$: Observable<User|null> = this.usersService.selectedUser$;
-  permissions$: Observable<Permissions> = this.permissionsService.permissions$;
+  permissions$: Observable<PermissionsMap> = this.permissionsService.permissions$.pipe(tap(data => console.log(data)));
 
   constructor(
     private usersService: UsersService,
     private permissionsService: PermissionsService,
     public dialog: MatDialog
   ) { }
+
+  onUpdatePermission(event: PermissionUpdateEvent) {
+    this.permissionsService.updatePermission(event.key, event.value);
+  }
 
   onDeleteUser(email: string) {
     this.usersService.deleteUser(email);
@@ -71,7 +77,8 @@ export class UsersPageComponent {
     MatSnackBarModule,
     MatCardModule,
     MatDialogModule,
-    EditUserEmailDialogModule
+    EditUserEmailDialogModule,
+    PermissionsControlModule
   ],
   exports: [UsersPageComponent]
 })

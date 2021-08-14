@@ -3,11 +3,11 @@
   <mat-icon>more_horiz</mat-icon>
 </button>
 <mat-menu #menu="matMenu">
-  <button mat-menu-item (click)="updateEmail(params.data.email)" [disabled]="!params.permissions.canEditPersonnel">
+  <button mat-menu-item (click)="updateEmail(params.data.email)" [disabled]="!params.permissions.get('canEditPersonnel')">
     <mat-icon>mode</mat-icon>
     <span>Update Email</span>
   </button>
-  <button mat-menu-item (click)="deleteUser(params.data.email)" [disabled]="!params.permissions.canDeletePersonnel">
+  <button mat-menu-item (click)="deleteUser(params.data.email)" [disabled]="!params.permissions.get('canDeletePersonnel')">
     <mat-icon>delete</mat-icon>
     <span>Delete</span>
   </button>

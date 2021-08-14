@@ -3,7 +3,8 @@ import { AgGridModule } from 'ag-grid-angular';
 import { ColDef, GridApi, GridReadyEvent } from 'ag-grid-community';
 import { User } from '../../global/models/user';
 import { UsersTableActionColumnComponent, UsersTableActionColumnModule } from '../users-table-action-column/users-table-action-column.component';
-import { Permissions } from './../../global/models/permissions';
+import { PermissionsMap } from './../../global/models/permissions';
+
 @Component({
   selector: 'app-users-table',
   templateUrl: './users-table.component.html',
@@ -12,7 +13,7 @@ import { Permissions } from './../../global/models/permissions';
 export class UsersTableComponent {
 
   @Input() users!: User[] | null;
-  @Input() permissions!: Permissions | null;
+  @Input() permissions!: PermissionsMap | null;
   gridApi!: GridApi;
   gridContext: any;
   columnDefs!: ColDef[];

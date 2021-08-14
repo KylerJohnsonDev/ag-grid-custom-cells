@@ -1,5 +1,8 @@
 <mat-toolbar [color]="'primary'">
   <span>Personnel Manager</span>
+  <div *ngIf="permissions$ | async as permissions">
+    <app-permission-controls [permissions]="permissions"></app-permission-controls>
+  </div>
 </mat-toolbar>
 
 <main>
