@@ -1,6 +1,9 @@
-export type PermissionsMap = Map<string, boolean>;
+export interface Permissions {
+  canEditPersonnel: boolean;
+  canDeletePersonnel: boolean;
+}
 
 export interface PermissionUpdateEvent {
-  key: string,
+  key: keyof Permissions,
   value: boolean
 }

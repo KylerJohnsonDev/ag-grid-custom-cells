@@ -3,7 +3,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { UsersService } from './users.service';
 import { Observable } from 'rxjs';
 import { User } from '../../global/models/user';
-import { PermissionsMap, PermissionUpdateEvent } from 'src/app/global/models/permissions';
+import { PermissionUpdateEvent, Permissions } from 'src/app/global/models/permissions';
 import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { UsersTableModule } from '../users-table/users-table.component';
@@ -27,7 +27,7 @@ export class UsersPageComponent {
 
   users$: Observable<User[]> = this.usersService.users$;
   selectedUser$: Observable<User|null> = this.usersService.selectedUser$;
-  permissions$: Observable<PermissionsMap> = this.permissionsService.permissions$.pipe(tap(data => console.log(data)));
+  permissions$: Observable<Permissions> = this.permissionsService.permissions$.pipe(tap(data => console.log(data)));
 
   constructor(
     private usersService: UsersService,
@@ -36,7 +36,7 @@ export class UsersPageComponent {
   ) { }
 
   onUpdatePermission(event: PermissionUpdateEvent) {
-    this.permissionsService.updatePermission(event.key, event.value);
+    this.permissionsService.updatePermissions(event.key, event.value);
   }
 
   onDeleteUser(email: string) {

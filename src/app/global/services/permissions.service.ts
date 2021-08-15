@@ -1,22 +1,22 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { PermissionsMap } from '../models/permissions';
+import { Permissions } from '../models/permissions';
 
-const initialPermissionsState = new Map<string, boolean>([
-  ["canEditPersonnel", true],
-  ["canDeletePersonnel", false]
-]);
+const initialPermissionsState = {
+  canEditPersonnel: true,
+  canDeletePersonnel: false
+}
 
 @Injectable({
   providedIn: 'root'
 })
 export class PermissionsService {
 
-  private permissionsSubject$ = new BehaviorSubject<PermissionsMap>(initialPermissionsState);
-  permissions$: Observable<PermissionsMap> = this.permissionsSubject$.asObservable();
+  private permissionsSubject$ = new BehaviorSubject<Permissions>(initialPermissionsState);
+  permissions$: Observable<Permissions> = this.permissionsSubject$.asObservable();
 
-  updatePermission(key: string, value: boolean): void {
-    const permissions = this.permissionsSubject$.value;
-    permissions.set(key, value);
+  updatePermissions(key: keyof Permissions, value: boolean): void {
+    const permissionsCopy = { ...this.permissionsSubject$.value, [key]: value };
+    this.permissionsSubject$.next(permissionsCopy);
   }
 }

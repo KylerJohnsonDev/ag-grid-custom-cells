@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, NgModule, Output } from '@angular/core';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { PermissionsMap, PermissionUpdateEvent } from '../../models/permissions';
+import { Permissions, PermissionUpdateEvent } from '../../models/permissions';
 
 @Component({
   selector: 'app-permission-controls',
@@ -10,10 +10,10 @@ import { PermissionsMap, PermissionUpdateEvent } from '../../models/permissions'
 })
 export class PermissionControlsComponent {
 
-  @Input() permissions!: PermissionsMap;
+  @Input() permissions!: Permissions;
   @Output() permissionUpdate = new EventEmitter<PermissionUpdateEvent>();
 
-  updatePermission(key: string, value: boolean) {
+  updatePermission(key: keyof Permissions, value: boolean) {
     this.permissionUpdate.emit({ key, value });
   }
 }

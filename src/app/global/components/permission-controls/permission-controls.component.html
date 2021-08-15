@@ -1,10 +1,10 @@
 <mat-slide-toggle
-  [checked]="permissions.get('canEditPersonnel')"
-  (toggleChange)="updatePermission('canEditPersonnel', !permissions.get('canEditPersonnel'))">
+  [checked]="permissions.canEditPersonnel"
+  (toggleChange)="updatePermission('canEditPersonnel', !permissions.canEditPersonnel)">
   Can Edit Personnel
 </mat-slide-toggle>
 <mat-slide-toggle
-  [checked]="permissions.get('canDeletePersonnel')"
-  (toggleChange)="updatePermission('canDeletePersonnel', !permissions.get('canDeletePersonnel'))">
+  [checked]="permissions.canDeletePersonnel"
+  (toggleChange)="updatePermission('canDeletePersonnel', !permissions.canDeletePersonnel)">
   Can Delete Personnel
 </mat-slide-toggle>

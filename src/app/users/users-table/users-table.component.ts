@@ -2,8 +2,8 @@ import { Component, EventEmitter, Input, NgModule, Output } from '@angular/core'
 import { AgGridModule } from 'ag-grid-angular';
 import { ColDef, GridApi, GridReadyEvent } from 'ag-grid-community';
 import { User } from '../../global/models/user';
+import { Permissions } from '../../global/models/permissions';
 import { UsersTableActionColumnComponent, UsersTableActionColumnModule } from '../users-table-action-column/users-table-action-column.component';
-import { PermissionsMap } from './../../global/models/permissions';
 
 @Component({
   selector: 'app-users-table',
@@ -13,7 +13,7 @@ import { PermissionsMap } from './../../global/models/permissions';
 export class UsersTableComponent {
 
   @Input() users!: User[] | null;
-  @Input() permissions!: PermissionsMap | null;
+  @Input() permissions!: Permissions | null;
   gridApi!: GridApi;
   gridContext: any;
   columnDefs!: ColDef[];
